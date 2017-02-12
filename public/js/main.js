@@ -12,6 +12,17 @@ angular.module('alurapic', ['minhasDiretivas','ngAnimate', 'ngRoute'])
             templateUrl: 'partials/foto.html',
             controller: 'FotoController'
         });
+
+        // novidade aqui! Nova rota!
+        $routeProvider.when('/fotos/edit/:fotoId', {
+            templateUrl: 'partials/foto.html',
+            controller: 'FotoController'
+        });
+		
+		$routeProvider.when('/produtos/:produtoId', function() {
+            templateUrl: 'partials/produto.html',
+            controller: 'ProdutoController'			
+		});
 	
         $routeProvider.otherwise({redirectTo: '/fotos'});
 		

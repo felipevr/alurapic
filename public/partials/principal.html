@@ -4,12 +4,15 @@
     <h1 class="text-center">Alurapic</h1>
 </div>
 
+<!-- novidade aqui! -->
+<p ng-show="mensagem.length" class="alert alert-info">
+    {{mensagem}}
+</p>
+
 <div class="row">
     <div class="col-md-12">
 		<form>
 		
-			<!-- Novidade! -->
-
              <div class="input-group">
                 <span class="input-group-btn">
                     <a href="/fotos/new" class="btn btn-primary" type="button">
@@ -19,7 +22,6 @@
                 <input class="form-control" placeholder="filtrar pelo título da foto" ng-model="filtro" ng-model-options="{ debounce: 500 }">
             </div> 
 
-            <!-- fim novidade! -->
 		</form>
     </div> <!-- fim col-md-12 -->
 </div> <!-- fim row -->
@@ -27,5 +29,8 @@
 <div class="row">
     <meu-painel class="col-md-2 painel-animado" ng-repeat="foto in fotos | filter: filtro" titulo="{{foto.titulo}}">
 		<minha-foto url="{{foto.url}}" titulo="{{foto.titulo}}"></minha-foto>
+		
+		<a class="btn btn-primary btn-block" href="/fotos/edit/{{foto._id}}">Editar</a>
+		<button class="btn btn-danger btn-block"  ng-click="remover(foto)" >Remover</button>
     </meu-painel>
 </div>

@@ -1,0 +1,12 @@
+<form novalidate name="calopsita">
+  <input name="nome" ng-model="passaro.nome" required ng-maxlength="20">
+  <!-- mensagem de erro obrigatório aqui -->
+	<span class="form-control alert-danger" 
+		ng-show = "calopsita.$submitted && calopsita.nome.$error.required">
+		Nome obrigatório
+	</span>    
+  <!-- mensagem de erro tamanho aqui -->
+	<span ng-show="calopsita.$submitted && calopsita.nome.$error.maxlength" class="form-control alert-danger">
+		No máximo 20 caracteres!
+	</span>   
+</form>
