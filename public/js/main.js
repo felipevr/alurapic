@@ -19,10 +19,10 @@ angular.module('alurapic', ['minhasDiretivas','ngAnimate', 'ngRoute'])
             controller: 'FotoController'
         });
 		
-		$routeProvider.when('/produtos/:produtoId', function() {
+		/*$routeProvider.when('/produtos/:produtoId', function() {
             templateUrl: 'partials/produto.html',
             controller: 'ProdutoController'			
-		});
+		});*/
 	
         $routeProvider.otherwise({redirectTo: '/fotos'});
 		

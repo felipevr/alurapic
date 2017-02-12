@@ -19,7 +19,7 @@
                         Nova foto
                     </a>
                 </span>
-                <input class="form-control" placeholder="filtrar pelo título da foto" ng-model="filtro" ng-model-options="{ debounce: 500 }">
+                <input class="form-control" placeholder="filtrar pelo tÃ­tulo da foto" ng-model="filtro" ng-model-options="{ debounce: 500 }">
             </div> 
 
 		</form>
@@ -31,6 +31,7 @@
 		<minha-foto url="{{foto.url}}" titulo="{{foto.titulo}}"></minha-foto>
 		
 		<a class="btn btn-primary btn-block" href="/fotos/edit/{{foto._id}}">Editar</a>
-		<button class="btn btn-danger btn-block"  ng-click="remover(foto)" >Remover</button>
+        <meu-botao-perigo nome="Remover" acao="remover(foto)"></meu-botao-perigo>
+
     </meu-painel>
 </div>
