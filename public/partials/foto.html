@@ -25,7 +25,6 @@
         <div class="form-group">
             <label>URL</label>
             <input name="url" class="form-control" ng-model="foto.url" required>
-			<!-- novidade -->
 
             <span ng-show = "formulario.$submitted && formulario.url.$error.required" 
                 class="form-control alert-danger">
@@ -36,6 +35,17 @@
             <label>Descrição</label>
             <textarea name="descricao" class="form-control" ng-model="foto.descricao">
             </textarea>
+        </div>
+		
+		<!-- novidade aqui! -->
+        <div class="form-group">
+            <label>Grupo</label>
+            <select name="grupo" class="form-control" required>
+                <option value="">Escolha um grupo</option>
+            </select>
+            <span ng-show="formulario.$submitted && formulario.grupo.$error.required" class="form-control alert-danger">
+                Grupo obrigatório
+            </span>
         </div>
 
         <button type="submit" class="btn btn-primary"  ng-disabled="formulario.$invalid">
