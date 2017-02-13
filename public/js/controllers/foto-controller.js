@@ -2,16 +2,21 @@
 angular.module('alurapic')
     .controller('FotoController', function($scope, $http, $routeParams) {
 
+        // novidade aqui! Alteramos a criação de recursoFoto!
+        var recursoFoto = $resource('/v1/fotos/:fotoId', null, {
+            'update' : { 
+                method: 'PUT'
+            }
+        });
+		
         $scope.foto = {};
         $scope.mensagem = '';
 		
         if($routeParams.fotoId) {
             // busca a foto no servidor
-			$http.get('/v1/fotos/' + $routeParams.fotoId)
-            .success(function(foto) {
-                $scope.foto = foto;
-            })
-            .error(function(erro) {
+			recursoFoto.get({fotoId: $routeParams.fotoId}, function(foto) {
+                $scope.foto = foto; 
+            }, function(erro) {
                 console.log(erro);
                 $scope.mensagem = 'Não foi possível obter a foto'
             });
@@ -33,17 +38,15 @@ angular.module('alurapic')
 						$scope.mensagem = 'Não foi possível alterar';
 					});
 
-				} else {     
-					$http.post('/v1/fotos', $scope.foto)
-					.success(function() {
-						$scope.foto = {};
-						$scope.mensagem = 'Foto cadastrada com sucesso';
-						//console.log('Foto adicionada com sucesso');
-					})
-					.error(function(erro) {
-						console.log(erro);
-						$scope.mensagem = 'Não foi possível cadastrar a foto';
-					});
+				} else {
+				
+					recursoFoto.save($scope.foto, function() {
+                        $scope.foto = {};
+                        $scope.mensagem = 'Foto cadastrada com sucesso';
+                    }, function(erro) {
+                        console.log(erro);
+                        $scope.mensagem = 'Não foi possível cadastrar a foto';
+                    });
 				}
 				
 				$scope.formulario.$setPristine();
