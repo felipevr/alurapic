@@ -1,13 +1,6 @@
 // public/js/controllers/foto-controller.js
 angular.module('alurapic')
-    .controller('FotoController', function($scope, $http, $routeParams) {
-
-        // novidade aqui! Alteramos a criação de recursoFoto!
-        var recursoFoto = $resource('/v1/fotos/:fotoId', null, {
-            'update' : { 
-                method: 'PUT'
-            }
-        });
+    .controller('FotoController', function($scope, recursoFoto, $routeParams) {
 		
         $scope.foto = {};
         $scope.mensagem = '';
@@ -28,15 +21,13 @@ angular.module('alurapic')
 
 				if($routeParams.fotoId) {
 
-					$http.put('/v1/fotos/' + $scope.foto._id, $scope.foto)
-					.success(function() {
-						$scope.mensagem = 'Foto alterada com sucesso';
-
-					})
-					.error(function(erro) {
-						console.log(erro);
-						$scope.mensagem = 'Não foi possível alterar';
-					});
+					recursoFoto.update({fotoId: $scope.foto._id}, 
+                        $scope.foto, function() {
+                        $scope.mensagem = 'Foto alterada com sucesso';
+                    }, function(erro) {
+                        console.log(erro);
+                        $scope.mensagem = 'Não foi possível alterar';
+                    });
 
 				} else {
 				
