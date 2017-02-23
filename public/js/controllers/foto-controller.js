@@ -24,8 +24,7 @@ angular.module('alurapic')
 						$scope.mensagem = dados.mensagem;
 						if (dados.inclusao) $scope.foto = {};
 						
-						// novidade aqui! 
-						$scope.$broadcast('fotoCadastrada');
+						// o broadcasting foi removido
 					
 						$scope.formulario.$setPristine();
 					})
