@@ -23,6 +23,9 @@ angular.module('alurapic')
 					.then(function(dados) {
 						$scope.mensagem = dados.mensagem;
 						if (dados.inclusao) $scope.foto = {};
+						
+						// novidade aqui! 
+						$scope.focado = true; 
 					
 						$scope.formulario.$setPristine();
 					})

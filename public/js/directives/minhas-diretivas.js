@@ -42,8 +42,34 @@ angular.module('minhasDiretivas', [])
         ddo.scope = {
             nome: '@',
             acao : '&'
-        }
+        };
         ddo.template = '<button class="btn btn-danger btn-block" ng-click="acao()">{{nome}}</button>';
 
         return ddo;
+    })
+	
+	.directive('meuFocus', function() {
+        var ddo = {};
+		
+        ddo.restrict = "A";
+		
+        ddo.scope = {
+			focado : '='
+		};
+		
+        ddo.link = function(scope, element) {
+			scope.$watch('focado', function() {
+
+                // executado toda vez que o valor mudar
+                if (scope.focado) {
+					// se mudou e é verdadeiro, o elemento deve ganhar o foco
+					element[0].focus();
+					scope.focado = false;
+                } 
+            });
+        };
+
+        return ddo;
     });
+	
+	
