@@ -53,20 +53,12 @@ angular.module('minhasDiretivas', [])
 		
         ddo.restrict = "A";
 		
-        ddo.scope = {
-			focado : '='
-		};
+       // não tem mais scope
 		
         ddo.link = function(scope, element) {
-			scope.$watch('focado', function() {
-
-                // executado toda vez que o valor mudar
-                if (scope.focado) {
-					// se mudou e é verdadeiro, o elemento deve ganhar o foco
-					element[0].focus();
-					scope.focado = false;
-                } 
-            });
+			scope.$on('fotoCadastrada', function() {
+                 element[0].focus();
+             });
         };
 
         return ddo;

@@ -25,7 +25,7 @@ angular.module('alurapic')
 						if (dados.inclusao) $scope.foto = {};
 						
 						// novidade aqui! 
-						$scope.focado = true; 
+						$scope.$broadcast('fotoCadastrada');
 					
 						$scope.formulario.$setPristine();
 					})
