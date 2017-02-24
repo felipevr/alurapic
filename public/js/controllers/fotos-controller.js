@@ -1,5 +1,6 @@
 angular.module('alurapic')
-	.controller('FotosController', function($scope, recursoFoto) {
+	.controller('FotosController', ['$scope', 'recursoFoto',
+		function($scope, recursoFoto) {
 				
 		$scope.fotos = [];
 		$scope.filtro = '';
@@ -23,4 +24,4 @@ angular.module('alurapic')
 			});
 		};
 
-	});
+	}]);

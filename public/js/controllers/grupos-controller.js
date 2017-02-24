@@ -1,7 +1,7 @@
 // public/js/controllers/grupos-controller.js
 
 angular.module('alurapic')
-    .controller('GruposController', function($scope, $http) {
+    .controller('GruposController', ['$scope', '$http', function($scope, $http) {
 
 		$scope.grupos = [];    
 
@@ -13,4 +13,4 @@ angular.module('alurapic')
 			console.log(erro);
 		});
 	
-    });
+    }]);
