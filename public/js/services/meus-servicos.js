@@ -18,40 +18,35 @@ angular.module('meusServicos', ['ngResource'])
         service.cadastrar = function(foto) {
 			return $q(function(resolve, reject) {
 				if(foto._id) {
-                    recursoFoto.update({fotoId: foto._id}, foto, function() {
-                        
-                        // novidade
-                        $rootScope.$broadcast(evento);
-						
-						resolve({
-                            mensagem: 'Foto ' + foto.titulo + ' atualizada com sucesso',
-                            inclusao: false
-                        });
-                    }, function(erro) {
-                        console.log(erro);
-                        reject({
-                            mensagem: 'Não foi possível atualizar a foto ' + foto.titulo
-                        });
-                    });
+					recursoFoto.update({fotoId: foto._id}, foto, function() {
 
-                } else {
-                    recursoFoto.save(foto, function() {
-                        
-                        // novidade
-                        $rootScope.$broadcast(evento);
-						
+						$rootScope.$broadcast(evento);
 						resolve({
-                            mensagem: 'Foto ' + foto.titulo + ' incluída com sucesso',
-                            inclusao: true
-                        });
-                    }, function(erro) {
-                        console.log(erro);
-                        reject({
-                            mensagem: 'Não foi possível incluir a foto ' + foto.titulo
-                        });
-                    });
-                }
-            });
-        };
-        return service;
+							mensagem: 'Foto ' + foto.titulo + ' atualizada com sucesso',
+							inclusao: false
+						});
+					}, function(erro) {
+						console.log(erro);
+						reject({
+							mensagem: 'Não foi possível atualizar a foto ' + foto.titulo
+						});
+					});
+
+				} else {
+					recursoFoto.save(foto, function() {
+						$rootScope.$broadcast(evento);
+						resolve({
+							mensagem: 'Foto ' + foto.titulo + ' incluída com sucesso',
+							inclusao: true
+						});
+					}, function(erro) {
+						console.log(erro);
+						reject({
+							mensagem: 'Não foi possível incluir a foto ' + foto.titulo
+						});
+					});
+				}
+			});
+		};
+		return service;
     }]);
