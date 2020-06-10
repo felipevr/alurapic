@@ -1,2 +1,9 @@
 # alurapic
-Brincando com angula.js
+Repositório de Treino para os Cursos da Alura
+
+
+
+
+
+
+
