@@ -3,40 +3,49 @@
 var titulo = document.querySelector(".titulo");
 titulo.textContent = "Aparecida Nutricionista";
 
-var paciente = document.querySelector("#primeiro-paciente");
+var pacientes = document.querySelectorAll(".paciente");
 
-var tdPeso = paciente.querySelector(".info-peso");
-var tdImc = paciente.querySelector(".info-imc");
 
-var nome = paciente.querySelector(".info-nome").textContent;
+for (var i=0; i < pacientes.length; i++) {
 
-var peso = tdPeso.textContent;
+    var paciente = pacientes[i];
 
-var altura = paciente.querySelector(".info-altura").textContent;
-var gordura = paciente.querySelector(".info-gordura").textContent;
+    var tdPeso = paciente.querySelector(".info-peso");
+    var tdImc = paciente.querySelector(".info-imc");
 
-var msg = document.querySelector('#mensagens');
+    var nome = paciente.querySelector(".info-nome").textContent;
 
-var invalido = false;
+    var peso = tdPeso.textContent;
 
-if (peso < 1 || peso >= 500) {
-    msg.innerHTML = '<p><strong>Peso do ' + nome + ' inválido</strong></p>';
-    invalido = true;
-    //alert('Peso inválido');
-    //return;
+    var altura = paciente.querySelector(".info-altura").textContent;
+    var gordura = paciente.querySelector(".info-gordura").textContent;
+
+    var msg = document.querySelector('#mensagens');
+
+    var alturaEhValida = true;
+    var pesoEhValido = true;
+
+    if (peso < 1 || peso >= 500) {
+        msg.innerHTML = '<p><strong>Peso do ' + nome + ' inválido</strong></p>';
+        console.log("Peso inválido");
+        tdImc.textContent = "Peso inválido!";
+        pesoEhValido = false;
+        //alert('Peso inválido');
+    }
+
+    if (altura < 0.1 || altura >= 3) {
+        msg.innerHTML += '<p><strong>Altura do ' + nome + ' inválida</strong></p>';console.log("Altura inválida");
+        tdImc.textContent = "Altura inválida!";
+        alturaEhValida = false;
+    }
+
+    if(pesoEhValido && alturaEhValida){
+        var imc = peso / (altura * altura);
+        tdImc.textContent = imc.toFixed(2);
+    }
+
 }
 
-if (altura < 0.1 || altura >= 3) {
-    msg.innerHTML += '<p><strong>Altura do ' + nome + ' inválida</strong></p>';
-    invalido = true;
-    //alert('Peso inválido');
-    //return;
-}
-
-if (!invalido) {
-    var imc = peso / (altura * altura);
-    tdImc.textContent = imc;
-}
 
 /*
 console.log(paciente);
