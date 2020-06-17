@@ -5,7 +5,6 @@ titulo.textContent = "Aparecida Nutricionista";
 
 var pacientes = document.querySelectorAll(".paciente");
 
-
 for (var i=0; i < pacientes.length; i++) {
 
     var paciente = pacientes[i];
@@ -51,10 +50,9 @@ for (var i=0; i < pacientes.length; i++) {
 }
 
 
-/*
-console.log(paciente);
-console.log(tdPeso);
-console.log(peso);
-console.log(altura);
-console.log(gordura);
-*/
+var botaoAdicionar = document.querySelector("#adicionar-paciente");
+botaoAdicionar.addEventListener("click", function() {
+    event.preventDefault();
+
+    console.log("Fui clicado!");
+});
