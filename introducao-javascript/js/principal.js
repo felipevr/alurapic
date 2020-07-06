@@ -26,17 +26,13 @@ for (var i=0; i < pacientes.length; i++) {
 
     if (!pesoEhValido) {
         msg.innerHTML = '<p><strong>Peso do ' + nome + ' inválido</strong></p>';
-        console.log("Peso inválido");
         tdImc.textContent = "Peso inválido!";
-        //paciente.style.color = "red";
-        //paciente.style.backgroundColor = "orange";
         paciente.classList.add("paciente-invalido");
     }
 
     if (!alturaEhValida) {
         msg.innerHTML += '<p><strong>Altura do ' + nome + ' inválida</strong></p>';console.log("Altura inválida");
         tdImc.textContent = "Altura inválida!";
-        //paciente.style.backgroundColor = "orange";
         paciente.classList.add("paciente-invalido");
     }
 
