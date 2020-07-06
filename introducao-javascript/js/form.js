@@ -11,8 +11,9 @@ botaoAdicionar.addEventListener("click", function () {
 
     var erros = validaPaciente(paciente);
 
+    exibeMensagensDeErro(erros);
+    
     if (erros.length > 0) {
-        exibeMensagensDeErro(erros);
         return;
     }
 
@@ -64,6 +65,10 @@ function validaPaciente(paciente) {
 
     let erros = [];
 
+    if (paciente.nome.length == 0) {
+        erros.push("O Nome deve ser preenchido");
+    }
+
     if (!validaAltura(paciente.altura)) {
         erros.push("Altura Inválida");
     }
@@ -72,12 +77,17 @@ function validaPaciente(paciente) {
         erros.push("Peso inválido");
     }
 
+    if (paciente.gordura.length == 0) {
+        erros.push("Por favor, preencha a gordura");
+    }
+
     return erros;
 
 }
 
 function exibeMensagensDeErro(erros) {
     var msgErro = document.querySelector("#mensagem-erro");
+    msgErro.innerHTML = "";
 
     erros.forEach((erro) => {
         var li = document.createElement("li");
